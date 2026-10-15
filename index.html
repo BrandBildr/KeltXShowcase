@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://static.wixstatic.com">
+<link rel="preload" as="image" imagesrcset="https://static.wixstatic.com/media/39b50e_8fffda79223846c284bd08bdc8301766~mv2.jpg/v1/fill/w_800,h_450,al_c,q_80,enc_auto/race.jpg 800w, https://static.wixstatic.com/media/39b50e_8fffda79223846c284bd08bdc8301766~mv2.jpg/v1/fill/w_1400,h_788,al_c,q_80,enc_auto/race.jpg 1400w, https://static.wixstatic.com/media/39b50e_8fffda79223846c284bd08bdc8301766~mv2.jpg/v1/fill/w_2200,h_1238,al_c,q_80,enc_auto/race.jpg 2200w" imagesizes="100vw" fetchpriority="high">
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..700&family=Big+Shoulders+Display:wght@700;800;900&display=swap" rel="stylesheet">
 <style>
 /* Layout concept: black stage, one gold signal. Hero states the race, then a
@@ -78,7 +79,7 @@ p{margin:0}
 .nav.solid{background:rgba(6,6,6,.82);backdrop-filter:blur(14px) saturate(1.2);-webkit-backdrop-filter:blur(14px)}
 .nav.solid::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--line)}
 .nav-in{height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;gap:24px}
-.brand{display:flex;align-items:center;text-decoration:none;flex:none}
+.brand{display:flex;align-items:center;text-decoration:none;flex:none;padding-block:10px}
 .brand .crop{display:block;width:var(--lw,150px);aspect-ratio:875/164;overflow:hidden;position:relative}
 .brand .crop img{position:absolute;max-width:none;width:calc(var(--lw,150px) / .875);height:auto;left:calc(var(--lw,150px) / .875 * -.062);top:calc(var(--lw,150px) / .875 * 1066 / 4000 * -.19)}
 .brand.noimg .crop{display:none}
@@ -98,7 +99,7 @@ p{margin:0}
 .menu-open .burger i::before{top:0;transform:rotate(45deg)}
 .menu-open .burger i::after{top:0;transform:rotate(-45deg)}
 @media(min-width:1040px){.nav-links{display:flex}.burger{display:none}}
-@media(max-width:420px){.nav .btn{padding:0 14px;letter-spacing:.1em}.hero-ctas .btn{padding:0 22px}}
+@media(max-width:480px){.nav .btn{padding:0 14px;letter-spacing:.1em;min-height:40px}.nav .brand{--lw:112px}.nav-in{gap:12px}.burger{width:40px;margin-right:-6px}.hero-ctas .btn{padding:0 22px}}
 
 .menu{position:fixed;inset:0;z-index:55;background:var(--ink);padding:calc(var(--nav-h) + env(safe-area-inset-top,0px) + 24px) var(--gutter-r) calc(32px + env(safe-area-inset-bottom,0px)) var(--gutter);display:flex;flex-direction:column;justify-content:space-between;visibility:hidden;clip-path:inset(0 0 100% 0);transition:clip-path .7s var(--ease),visibility 0s .7s}
 .menu-open .menu{visibility:visible;clip-path:inset(0 0 0 0);transition:clip-path .7s var(--ease)}
@@ -124,9 +125,9 @@ p{margin:0}
 .hero-x .bar:first-child{animation-delay:.4s}
 @keyframes bar{to{transform:none}}
 @media(max-width:899px){.hero-x{width:86vw;right:-30vw;top:16%;opacity:.55}}
-.hero-body{position:relative;z-index:2;align-self:end;padding-top:calc(var(--nav-h) + 80px);padding-bottom:40px}
-.hero h1{font-size:clamp(4rem,14.5vw,10.5rem);line-height:.8;letter-spacing:-.005em}
-.line{display:block;overflow:hidden;padding-bottom:.04em}
+.hero-body{position:relative;z-index:2;align-self:end;width:100%;padding-top:calc(var(--nav-h) + 80px);padding-bottom:40px}
+.hero h1{font-size:clamp(4rem,14.5vw,10.5rem);line-height:.86;letter-spacing:-.005em}
+.line{display:block;overflow:hidden;padding-top:.06em;margin-top:-.06em;padding-bottom:.02em}
 .line>span{display:block;transform:translateY(102%);animation:rise 1.1s var(--ease) forwards}
 .line:nth-child(2)>span{animation-delay:.12s}.line:nth-child(3)>span{animation-delay:.24s}
 @keyframes rise{to{transform:none}}
@@ -165,7 +166,8 @@ p{margin:0}
 .facts b{display:block;font-family:var(--f-display);font-weight:800;font-size:clamp(2.6rem,6vw,3.8rem);line-height:1}
 .facts span{font-size:.86rem;color:var(--smoke)}
 
-.race{position:relative;margin-top:clamp(40px,6vw,64px)}
+.race{position:relative;margin-top:clamp(40px,6vw,64px);height:calc(100svh + 14 * 46svh)}
+@media(max-width:899px){.race{height:calc(100svh + 14 * 34svh)}}
 .stage{position:sticky;top:0;height:100svh;overflow:hidden;display:grid;background:var(--ink)}
 .stage-bg{position:absolute;inset:0;z-index:0;opacity:.16;transition:opacity .6s}
 .stage-bg img{width:100%;height:100%;object-fit:cover;filter:grayscale(1)}
@@ -185,8 +187,8 @@ p{margin:0}
 
 .race-main{display:grid;gap:28px;align-content:center;max-width:var(--maxw);width:100%;margin:0 auto}
 @media(min-width:900px){.race-main{grid-template-columns:1.35fr 1fr;gap:56px;align-items:center}}
-.title-box{position:relative;min-height:2.3em;font-size:clamp(3.6rem,11.5vw,10.5rem)}
-.leg-title{position:absolute;left:0;right:0;bottom:0;font-family:var(--f-display);font-weight:900;text-transform:uppercase;line-height:.82}
+.title-box{position:relative;display:grid;align-items:end;min-height:2.3em;font-size:clamp(3.6rem,11.5vw,10.5rem)}
+.leg-title{grid-area:1/1;font-family:var(--f-display);font-weight:900;text-transform:uppercase;line-height:.82}
 .leg-title .big{display:block;color:var(--gold);background:linear-gradient(100deg,var(--gold-lo),var(--gold) 30%,var(--gold-hi) 55%,var(--gold) 80%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .leg-title .name{display:block;font-size:.62em;line-height:.9;margin-top:.06em}
 .leg-title.long .name{font-size:.48em}
@@ -196,7 +198,7 @@ p{margin:0}
 .split{display:grid;gap:12px}
 .split-row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
 .seg{display:inline-flex;border:1px solid var(--line);background:var(--ink-3)}
-.seg button{border:0;background:none;padding:9px 13px;cursor:pointer;font-stretch:112%;font-weight:600;font-size:.74rem;letter-spacing:.08em;color:var(--smoke);transition:color .25s,background .25s}
+.seg button{border:0;background:none;min-height:42px;padding:0 13px;cursor:pointer;font-stretch:112%;font-weight:600;font-size:.74rem;letter-spacing:.08em;color:var(--smoke);transition:color .25s,background .25s}
 .seg button[aria-pressed="true"]{background:var(--bone);color:var(--ink)}
 .seg button:hover{color:var(--bone)}
 .seg button[aria-pressed="true"]:hover{color:var(--ink)}
@@ -222,7 +224,7 @@ p{margin:0}
 .t-runner{fill:var(--bone)}
 .t-halo{fill:rgba(230,200,110,.22)}
 .node{position:absolute;transform:translate(-50%,-50%);border:0;padding:0;background:none;cursor:pointer;display:grid;place-items:center}
-.node.run{width:28px;height:28px}
+.node.run{width:40px;height:40px}
 .node.run::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ink);box-shadow:0 0 0 2px var(--line);transition:background .3s,box-shadow .3s,transform .3s var(--ease)}
 .node.run.done::before{background:var(--gold);box-shadow:0 0 0 2px var(--gold)}
 .node.station{width:44px;height:44px;background:var(--ink);border:1.5px solid var(--line);transform:translate(-50%,-50%) rotate(45deg);transition:border-color .3s,background .3s,transform .45s var(--ease)}
@@ -306,6 +308,7 @@ p{margin:0}
 .ath:first-child{border-top:3px solid var(--gold)}
 .ath:last-child{border-top:3px solid var(--bone)}
 .formula{grid-column:1/-1;color:var(--smoke);font-size:.9rem}
+@media(max-width:520px){.ath-ctl{display:grid;grid-template-columns:1fr 1fr;gap:8px}.ath input{grid-column:1/-1;order:-1}.ath .icon-btn{width:100%;height:44px}}
 .result-cat{font-family:var(--f-display);font-weight:900;font-size:clamp(5.5rem,20vw,13rem);line-height:.8;color:var(--gold);background:linear-gradient(100deg,var(--gold-lo),var(--gold) 30%,var(--gold-hi) 55%,var(--gold) 80%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .result-line{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin:16px 0 34px}
 .result-line .quip{font-family:var(--f-display);font-weight:800;font-size:1.6rem;text-transform:uppercase;line-height:1}
@@ -368,12 +371,16 @@ p{margin:0}
 
 /* ---------- footer ---------- */
 footer{border-top:1px solid var(--line);padding-block:64px calc(36px + env(safe-area-inset-bottom,0px))}
+@media(max-width:899px){footer{padding-bottom:calc(100px + env(safe-area-inset-bottom,0px))}}
 .foot{display:grid;gap:40px}
 @media(min-width:900px){.foot{grid-template-columns:2fr 1fr 1fr 1fr}}
 .foot .brand{--lw:180px}
 .foot p{color:var(--smoke);margin-top:16px;max-width:36ch}
 .foot h4{margin:0 0 14px;font-stretch:125%;font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--smoke);font-weight:600}
-.foot ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.foot ul{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.foot li{min-height:44px;display:flex;align-items:center}
+.foot ul a{display:inline-flex;align-items:center;min-height:44px}
+.copy button{min-height:40px}
 .foot a{text-decoration:none}
 .foot a:hover,.foot a:focus-visible{color:var(--gold)}
 .copy{display:flex;align-items:center;gap:10px}
@@ -455,7 +462,7 @@ footer{border-top:1px solid var(--line);padding-block:64px calc(36px + env(safe-
 <main id="main">
 <!-- ============ HERO ============ -->
 <section class="hero" id="top">
-  <div class="hero-img"><img id="heroImg" src="https://static.wixstatic.com/media/39b50e_8fffda79223846c284bd08bdc8301766~mv2.jpg/v1/fill/w_2200,h_1238,al_c,q_85,enc_auto/race.jpg" alt="Two KELTX athletes working through a station side by side" fetchpriority="high"></div>
+  <div class="hero-img"><img id="heroImg" src="https://static.wixstatic.com/media/39b50e_8fffda79223846c284bd08bdc8301766~mv2.jpg/v1/fill/w_2200,h_1238,al_c,q_85,enc_auto/race.jpg" srcset="https://static.wixstatic.com/media/39b50e_8fffda79223846c284bd08bdc8301766~mv2.jpg/v1/fill/w_800,h_450,al_c,q_80,enc_auto/race.jpg 800w, https://static.wixstatic.com/media/39b50e_8fffda79223846c284bd08bdc8301766~mv2.jpg/v1/fill/w_1400,h_788,al_c,q_80,enc_auto/race.jpg 1400w, https://static.wixstatic.com/media/39b50e_8fffda79223846c284bd08bdc8301766~mv2.jpg/v1/fill/w_2200,h_1238,al_c,q_80,enc_auto/race.jpg 2200w" sizes="100vw" decoding="async" alt="Two KELTX athletes working through a station side by side" fetchpriority="high"></div>
   <svg class="hero-x" viewBox="0 0 100 100" aria-hidden="true"><path class="bar" d="M8 4h26l58 92H66z"/><path class="bar" d="M66 4h26L66 45 53 24z"/><path class="bar" d="M34 96H8l26-41 13 21z"/></svg>
 
   <div class="hero-body wrap">
@@ -507,9 +514,9 @@ footer{border-top:1px solid var(--line);padding-block:64px calc(36px + env(safe-
     </div>
   </div>
 
-  <div class="race" id="race" style="height:calc(100svh + 14 * 46svh)">
+  <div class="race" id="race">
     <div class="stage" id="stage">
-      <div class="stage-bg"><img src="https://static.wixstatic.com/media/39b50e_44b20ef64dab4b4287a4bd18cffcf3e5~mv2.jpg/v1/fill/w_1800,h_1013,al_c,q_80,enc_auto/format.jpg" alt="" loading="lazy"></div>
+      <div class="stage-bg"><img src="https://static.wixstatic.com/media/39b50e_44b20ef64dab4b4287a4bd18cffcf3e5~mv2.jpg/v1/fill/w_1800,h_1013,al_c,q_80,enc_auto/format.jpg" srcset="https://static.wixstatic.com/media/39b50e_44b20ef64dab4b4287a4bd18cffcf3e5~mv2.jpg/v1/fill/w_800,h_450,al_c,q_80,enc_auto/format.jpg 800w, https://static.wixstatic.com/media/39b50e_44b20ef64dab4b4287a4bd18cffcf3e5~mv2.jpg/v1/fill/w_1400,h_788,al_c,q_80,enc_auto/format.jpg 1400w, https://static.wixstatic.com/media/39b50e_44b20ef64dab4b4287a4bd18cffcf3e5~mv2.jpg/v1/fill/w_2200,h_1238,al_c,q_80,enc_auto/format.jpg 2200w" sizes="100vw" decoding="async" alt="" loading="lazy"></div>
 
       <div class="hud">
         <div>
@@ -624,7 +631,7 @@ footer{border-top:1px solid var(--line);padding-block:64px calc(36px + env(safe-
 <!-- ============ WHO ============ -->
 <section class="band who" id="who" style="padding-top:0">
   <div class="wrap who-grid">
-    <div class="who-img rv"><img id="whoImg" src="https://static.wixstatic.com/media/39b50e_473d3602c853465a90261d6cd3bb7ed7~mv2.jpg/v1/fill/w_1200,h_1500,al_c,q_85,enc_auto/who.jpg" alt="KELTX racers together on the course" loading="lazy"></div>
+    <div class="who-img rv"><img id="whoImg" src="https://static.wixstatic.com/media/39b50e_473d3602c853465a90261d6cd3bb7ed7~mv2.jpg/v1/fill/w_1200,h_1500,al_c,q_85,enc_auto/who.jpg" srcset="https://static.wixstatic.com/media/39b50e_473d3602c853465a90261d6cd3bb7ed7~mv2.jpg/v1/fill/w_600,h_750,al_c,q_80,enc_auto/who.jpg 600w, https://static.wixstatic.com/media/39b50e_473d3602c853465a90261d6cd3bb7ed7~mv2.jpg/v1/fill/w_1000,h_1250,al_c,q_80,enc_auto/who.jpg 1000w, https://static.wixstatic.com/media/39b50e_473d3602c853465a90261d6cd3bb7ed7~mv2.jpg/v1/fill/w_1400,h_1750,al_c,q_80,enc_auto/who.jpg 1400w" sizes="(min-width:900px) 50vw, 100vw" decoding="async" alt="KELTX racers together on the course" loading="lazy"></div>
     <div>
       <div class="head rv" style="margin-bottom:32px">
         <span class="kicker gold">Who is KELTX for?</span>
@@ -645,7 +652,7 @@ footer{border-top:1px solid var(--line);padding-block:64px calc(36px + env(safe-
 
 <!-- ============ RACE DAY ============ -->
 <section class="day" id="raceday">
-  <div class="day-img"><img id="dayImg" src="https://static.wixstatic.com/media/39b50e_7c0315f01f0647f5aca5f5bf3e11c89b~mv2.jpg/v1/fill/w_2200,h_1238,al_c,q_85,enc_auto/raceday.jpg" alt="The KELTX race floor with athletes on stations and a crowd watching" loading="lazy"></div>
+  <div class="day-img"><img id="dayImg" src="https://static.wixstatic.com/media/39b50e_7c0315f01f0647f5aca5f5bf3e11c89b~mv2.jpg/v1/fill/w_2200,h_1238,al_c,q_85,enc_auto/raceday.jpg" srcset="https://static.wixstatic.com/media/39b50e_7c0315f01f0647f5aca5f5bf3e11c89b~mv2.jpg/v1/fill/w_800,h_450,al_c,q_80,enc_auto/raceday.jpg 800w, https://static.wixstatic.com/media/39b50e_7c0315f01f0647f5aca5f5bf3e11c89b~mv2.jpg/v1/fill/w_1400,h_788,al_c,q_80,enc_auto/raceday.jpg 1400w, https://static.wixstatic.com/media/39b50e_7c0315f01f0647f5aca5f5bf3e11c89b~mv2.jpg/v1/fill/w_2200,h_1238,al_c,q_80,enc_auto/raceday.jpg 2200w" sizes="100vw" decoding="async" alt="The KELTX race floor with athletes on stations and a crowd watching" loading="lazy"></div>
   <div class="wrap">
     <span class="kicker gold rv">Race day</span>
     <h2 class="rv" style="margin-top:20px">As fun to watch as it is to race</h2>
@@ -661,7 +668,7 @@ footer{border-top:1px solid var(--line);padding-block:64px calc(36px + env(safe-
 
 <!-- ============ CTA ============ -->
 <section class="cta" id="tickets">
-  <div class="cta-img"><img src="https://static.wixstatic.com/media/39b50e_67b8a1fb871f476c96d65f37959f9e53~mv2.jpg/v1/fill/w_2000,h_1125,al_c,q_80,enc_auto/tickets.jpg" alt="" loading="lazy"></div>
+  <div class="cta-img"><img src="https://static.wixstatic.com/media/39b50e_67b8a1fb871f476c96d65f37959f9e53~mv2.jpg/v1/fill/w_2000,h_1125,al_c,q_80,enc_auto/tickets.jpg" srcset="https://static.wixstatic.com/media/39b50e_67b8a1fb871f476c96d65f37959f9e53~mv2.jpg/v1/fill/w_800,h_450,al_c,q_80,enc_auto/tickets.jpg 800w, https://static.wixstatic.com/media/39b50e_67b8a1fb871f476c96d65f37959f9e53~mv2.jpg/v1/fill/w_1400,h_788,al_c,q_80,enc_auto/tickets.jpg 1400w, https://static.wixstatic.com/media/39b50e_67b8a1fb871f476c96d65f37959f9e53~mv2.jpg/v1/fill/w_2200,h_1238,al_c,q_80,enc_auto/tickets.jpg 2200w" sizes="100vw" decoding="async" alt="" loading="lazy"></div>
   <div class="wrap">
     <span class="kicker gold rv">Royal Cornwall Showground, 16 to 18 October</span>
     <h2 class="rv" style="margin-top:22px">Book your<br><span class="hollow">tickets</span> now</h2>
@@ -829,11 +836,11 @@ window.addEventListener('DOMContentLoaded', () => {
     const el = titleEl(l); titleBox.appendChild(el);
     if (!reduce && el.animate) {
       const y = dir >= 0 ? 60 : -60;
-      el.animate([{ transform: `translateY(${y}%)`, opacity: 0, clipPath: 'inset(0 0 100% 0)' }, { transform: 'none', opacity: 1, clipPath: 'inset(0 0 0 0)' }], { duration: 650, easing: 'cubic-bezier(.22,.8,.2,1)' });
-      if (prev) prev.animate([{ transform: 'none', opacity: 1 }, { transform: `translateY(${-y}%)`, opacity: 0 }], { duration: 450, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'forwards' }).onfinish = () => prev.remove();
+      $$('.leg-title', titleBox).forEach(o => { if (o !== el && o !== prev) o.remove(); });
+      el.animate([{ transform: `translateY(${y * 0.5}%)`, opacity: 0 }, { transform: 'none', opacity: 1 }], { duration: 520, delay: prev ? 140 : 0, easing: 'cubic-bezier(.22,.8,.2,1)', fill: 'backwards' });
+      if (prev) prev.animate([{ transform: 'none', opacity: 1 }, { transform: `translateY(${-y * 0.3}%)`, opacity: 0 }], { duration: 160, easing: 'ease-in', fill: 'forwards' }).onfinish = () => prev.remove();
       infoBody.animate([{ opacity: 0, transform: 'translateY(10px)' }, { opacity: 1, transform: 'none' }], { duration: 500, easing: 'ease-out' });
     } else if (prev) prev.remove();
-    $$('.leg-title', titleBox).slice(0, -2).forEach(e => e.remove());
     infoBody.textContent = l.body;
     hudLeg.textContent = pad(i + 1);
     hudType.textContent = l.type === 'run' ? `Run ${l.run} of 7` : `Station ${l.n} of 7`;
@@ -948,7 +955,9 @@ window.addEventListener('DOMContentLoaded', () => {
       if (wr.top < vh && wr.bottom > 0) whoImg.style.transform = `translate3d(0,${((wr.top + wr.height / 2) / vh - 0.5) * -60 - 30}px,0)`;
     }
     const cr = cta.getBoundingClientRect();
-    const showBar = y > hero.offsetHeight * 0.7 && cr.top > vh * 0.6 && !document.body.classList.contains('menu-open');
+    const rr = race.getBoundingClientRect();
+    const inRace = rr.top < vh * 0.9 && rr.bottom > vh * 0.1;
+    const showBar = y > hero.offsetHeight * 0.7 && cr.top > vh * 0.6 && !inRace && !document.body.classList.contains('menu-open');
     bookbar.classList.toggle('show', showBar);
     updateRace(force);
   };
